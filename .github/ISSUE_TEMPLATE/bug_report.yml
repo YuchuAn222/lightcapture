@@ -1,0 +1,22 @@
+name: 问题反馈
+description: 记录问题，方便后续维修
+body:
+  - type: input
+    id: version
+    attributes:
+      label: 工具版本和 Windows 版本
+      placeholder: 例如 v1.2.0 / Windows 11
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: 怎么触发
+      description: 写出操作步骤、期望结果和实际结果。不要上传剪贴板数据库或包含个人信息的截图。
+    validations:
+      required: true
+  - type: textarea
+    id: diagnostic
+    attributes:
+      label: 补充信息
+      description: 例如是否开机后出现、快捷键是否被占用、重开后是否仍出现。日志请先检查并去除个人路径。

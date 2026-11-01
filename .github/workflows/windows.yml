@@ -1,0 +1,31 @@
+name: Windows build and tests
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  windows:
+    runs-on: windows-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - name: Build native application and tests
+        shell: cmd
+        run: scripts\build.cmd
+      - name: Run isolated native tests
+        shell: pwsh
+        run: ./scripts/test.ps1
+      - name: Upload executable
+        uses: actions/upload-artifact@v7
+        with:
+          name: LightCapture-windows-x64
+          path: build/LightCapture.exe
+          if-no-files-found: error
+          retention-days: 14
